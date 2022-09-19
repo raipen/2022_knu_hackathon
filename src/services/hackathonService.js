@@ -24,6 +24,14 @@ class UserService {
     }
 
     async apply(userDTO) {
+        //2022년 9월 19일 18시까지만 신청 가능
+        let now = new Date();
+        let deadline = new Date("2022-09-19 18:00:00");
+        if (now > deadline) {
+            throw new Error("신청 기간이 아닙니다.");
+        }
+
+
         if (!this.checkTeamName(userDTO.team))
             throw new Error("팀 이름을 입력해주세요.");
         
